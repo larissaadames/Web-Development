@@ -1,3 +1,22 @@
+:root{
+    --cor-fundo-1: #D9D3DA;
+    --cor-fundo-2: #fff;
+    --cor-fundo-transparente: #aaa3;
+    --cor-fundo-footer: #cccccc;
+    --cor-texto-1: #181818;
+    --cor-texto-2: #211E24;
+    --cor-roxo-1: #B04FE9;
+    --cor-roxo-2: #673AB7;
+    --cor-roxo-3: #512DA8;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cor-fundo-1);
+    color: var(--cor-texto-1)
+}
+
 .infos{
     text-align: right;
 }

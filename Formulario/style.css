@@ -1,0 +1,25 @@
+:root{
+    --cor-back: #D9D3DA;
+    --cor1: #673AB7;
+    --cor2:#512DA8;
+}
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cor-back);
+    color: var(--cor1);
+}
+
+button{
+    color:var(--cor-back);
+    background-color: var(--cor1);
+}
+
+button:hover{
+    color: var(--cor-back);
+    background-color:var(--cor2);
+}
+
+.form{
+    display: flex;
+}
