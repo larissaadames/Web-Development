@@ -1,51 +1,150 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+/* --- Reset e variáveis --- */
 * {
-    font-family:  "Nunito", sans-serif;
-}
-
-:root{
-    --cor-fundo:#DAD9D9;
-    --cor-1:#182240;
-    --cor-2:#3698D4;
-    --cor-3:#C0C0C0;
-    --cor-4:#848585;
-}
-
-body{
-    padding: 0;
+    font-family: "Nunito", sans-serif;
     margin: 0;
-    background-color: var(--cor-fundo);
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e borda não aumentem o tamanho do elemento */
 }
 
-header{
-    background-color: var(--cor-3);
+:root {
+    --cor-fundo: #DAD9D9;
+    --cor-1: #182240; /* Azul escuro */
+    --cor-2: #3698D4; /* Azul claro */
+    --cor-3: #C0C0C0; /* Cinza claro */
+    --cor-4: #848585; /* Cinza médio */
 }
-button{
+
+body {
     background-color: var(--cor-fundo);
     color: var(--cor-1);
-    border-radius: 10rem;
-    transition: 0.4s;
+    line-height: 1.6;
+}
+
+/* --- Hierarquia e Seletores --- */
+header {
+    background-color: var(--cor-3);
+    padding: 5px;
+}
+
+/* header h1 {  Seletor de hierarquia: aplica a h1 dentro do header 
+    color: var(--cor-1);
+    font-size: 2.5rem;
+} */
+
+a {
+    color: var(--cor-1);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover { /* Pseudo-classe: muda a cor do link ao passar o mouse */
+    color: var(--cor-2);
+}
+
+main h1{
+    margin: 20px;
+    text-align: center;
+}
+main p {
+    text-align: center;
+}
+
+/* --- Flexbox para o menu --- */
+.container-menu {
+    display: flex;
+    justify-content: space-between; /* Espaço entre os itens */
+    align-items: center; /* Alinha verticalmente */
+    flex-wrap: wrap; /* Permite que o menu quebre em telas menores */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container-menu ul {
+    display: flex; /* Flexbox para os itens do menu */
+    list-style: none;
+    gap: 20px;
+}
+
+.logo img {
+    width: 80px; /* Tamanho ajustado da logo */
+    height: auto;
+}
+
+.botao-doar {
+    background-color: var(--cor-2);
+    color: var(--cor-fundo);
     border: none;
+    border-radius: 10rem;
     padding: 12px 20px;
     font-size: 16px;
-    justify-content: right;
-    display: flex;
-    align-items: end;
+    cursor: pointer;
+    transition: background-color 0.4s;
 }
-button:hover{
+
+.botao-doar:hover {
+    background-color: var(--cor-1);
+}
+
+/* --- Grid para os cards --- */
+.secao-gatos {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.container-cards-gatos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.card-gato {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garante que a imagem não vaze */
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.card-gato:hover { /* Pseudo-classe: efeito de zoom ao passar o mouse */
+    transform: translateY(-5px);
+}
+
+.card-gato img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.card-gato h3, .card-gato p {
+    padding: 0 20px;
+}
+
+.btn-adotar {
+    display: inline-block;
     background-color: var(--cor-1);
     color: var(--cor-fundo);
-    transition: 0.4s;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.logo{
-    max-width: 50vmin;
-    overflow: visible;
-
+.btn-adotar:hover {
+    color: var(--cor-1);
+    background-color: var(--cor-2);
 }
 
-.logo img{
-    width: 10%;
-    height: 10%;
+footer {
+    background-color: var(--cor-3);
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: var(--cor-1);
 }
