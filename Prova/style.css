@@ -49,6 +49,10 @@ strong{
     background-color: var(--cor-nav);
 }
 
+.test{
+    width: 20%;
+    margin: auto;
+}
 .card1 img{
     border-radius: 40px;
 }
