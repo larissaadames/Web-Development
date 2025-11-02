@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funções JS (Básico)</title>
+    <title>Funções JS TDE</title>
     <style>
         body {
             font-family: sans-serif;
@@ -37,7 +37,6 @@
 
     <h1>Calculadora e Manipulador de Arrays (Básico)</h1>
 
-    <!-- Seção de Operações Básicas -->
     <h2>Operações Básicas</h2>
     <div>
         <label for="num1">Número 1:</label>
@@ -51,11 +50,10 @@
         <button id="btn-multiplica">Multiplicar</button>
         <button id="btn-divide">Dividir</button>
     </div>
-    <div id="resultado-basico"><!-- Resultado aparecerá aqui --></div>
+    <div id="resultado-basico"><!-- Resultado --></div>
 
     <hr>
 
-    <!-- Seção de Manipulação de Array -->
     <h2>Manipulação de Array</h2>
     <div>
         <label for="array-input">Números (separados por vírgula):</label>
@@ -65,50 +63,18 @@
         <button id="btn-filtrar">Filtrar Pares</button>
         <button id="btn-media">Calcular Média</button>
     </div>
-    <div id="resultado-array"><!-- Resultado aparecerá aqui --></div>
+    <div id="resultado-array"><!-- Resultado--></div>
 
     <script>
-        // --- DEFINIÇÃO DAS FUNÇÕES ---
-
-        // 1. Funções Nomeadas (Operações Básicas)
-        /**
-         * Soma dois números.
-         * @param {number} a - O primeiro número.
-         * @param {number} b - O segundo número.
-         * @returns {number} A soma de a e b.
-         */
         function soma(a, b) {
             return a + b;
         }
-
-        /**
-         * Subtrai o segundo número do primeiro.
-         * @param {number} a - O primeiro número.
-         * @param {number} b - O segundo número.
-         * @returns {number} A diferença entre a e b.
-         */
         function subtracao(a, b) {
             return a - b;
         }
-
-        // 2. Funções Anônimas (atribuídas a variáveis)
-        /**
-         * Multiplica dois números.
-         * @param {number} a - O primeiro número.
-         * @param {number} b - O segundo número.
-         * @returns {number} O produto de a e b.
-         */
         const multiplicacao = function(a, b) {
             return a * b;
         };
-
-        /**
-         * Divide o primeiro número pelo segundo.
-         * Lança um erro se o divisor for zero.
-         * @param {number} a - O numerador.
-         * @param {number} b - O denominador.
-         * @returns {number} O quociente de a e b.
-         */
         const divisao = function(a, b) {
             if (b === 0) {
                 throw new Error("Não é possível dividir por zero.");
@@ -116,54 +82,27 @@
             return a / b;
         };
 
-        // 3. Arrow Functions (Manipulação de Array)
-        /**
-         * Filtra um array, retornando apenas os números pares.
-         * @param {number[]} array - O array de números.
-         * @returns {number[]} Um novo array contendo apenas os números pares.
-         */
         const filtrarPares = (array) => array.filter(num => num % 2 === 0);
 
-        /**
-         * Calcula a média de um array de números.
-         * @param {number[]} array - O array de números.
-         * @returns {number} A média dos números.
-         */
         const calcularMedia = (array) => {
             if (array.length === 0) return 0;
             const somaTotal = array.reduce((acc, num) => acc + num, 0);
             return somaTotal / array.length;
         };
 
-        // 4. Função que recebe um Callback
-        /**
-         * Executa uma operação de callback em um array de números.
-         * @param {number[]} array - O array de números.
-         * @param {function} callback - A função a ser executada (ex: filtrarPares, calcularMedia).
-         * @returns {*} O resultado da operação do callback.
-         */
         function executarOperacaoArray(array, callback) {
-            // O callback é a função que é passada como argumento (filtrarPares ou calcularMedia)
             return callback(array);
         }
 
-        // --- LÓGICA DA APLICAÇÃO ---
-
-        // Espera o DOM carregar para adicionar os eventos
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Seletores dos elementos de Operações Básicas
             const num1Input = document.getElementById('num1');
             const num2Input = document.getElementById('num2');
             const resultadoBasico = document.getElementById('resultado-basico');
 
-            // Seletores dos elementos de Array
             const arrayInput = document.getElementById('array-input');
             const resultadoArray = document.getElementById('resultado-array');
 
-            // --- Funções Auxiliares ---
-            
-            // Pega os valores dos inputs básicos e converte para número
             function getNumerosBasicos() {
                 const a = parseFloat(num1Input.value);
                 const b = parseFloat(num2Input.value);
@@ -173,18 +112,16 @@
                 return { a, b };
             }
 
-            // Pega o valor do input do array, limpa e converte para array de números
             function getArrayNumeros() {
                 const texto = arrayInput.value;
                 if (!texto) return [];
                 
                 return texto
-                    .split(',') // Divide a string pela vírgula
-                    .map(item => parseFloat(item.trim())) // Remove espaços e converte para número
-                    .filter(item => !isNaN(item)); // Remove qualquer entrada que não seja um número
+                    .split(',')
+                    .map(item => parseFloat(item.trim())) 
+                    .filter(item => !isNaN(item));
             }
             
-            // Exibe o resultado na tela
             function exibirResultado(elemento, resultado, tipo = 'sucesso') {
                 elemento.classList.remove('erro'); // Remove classe de erro anterior
                 
@@ -195,8 +132,6 @@
                     elemento.textContent = `Resultado: ${resultado}`;
                 }
             }
-
-            // --- Event Listeners para Operações Básicas ---
 
             document.getElementById('btn-soma').addEventListener('click', () => {
                 try {
@@ -221,7 +156,7 @@
                     const { a, b } = getNumerosBasicos();
                     exibirResultado(resultadoBasico, multiplicacao(a, b));
                 } catch (e)
- {
+{
                     exibirResultado(resultadoBasico, e.message, 'erro');
                 }
             });
@@ -230,7 +165,6 @@
                 try {
                     const { a, b } = getNumerosBasicos();
                     const resultado = divisao(a, b);
-                    // Arredonda para 2 casas decimais se for um número decimal
                     const resultadoFormatado = Number.isInteger(resultado) ? resultado : resultado.toFixed(2);
                     exibirResultado(resultadoBasico, resultadoFormatado);
                 } catch (e) {
@@ -238,12 +172,9 @@
                 }
             });
 
-            // --- Event Listeners para Manipulação de Array (usando o callback) ---
-
             document.getElementById('btn-filtrar').addEventListener('click', () => {
                 try {
                     const array = getArrayNumeros();
-                    // Passando a ARROW FUNCTION 'filtrarPares' como CALLBACK
                     const resultado = executarOperacaoArray(array, filtrarPares);
                     exibirResultado(resultadoArray, `[${resultado.join(', ')}]`);
                 } catch (e) {
@@ -252,11 +183,10 @@
             });
 
             document.getElementById('btn-media').addEventListener('click', () => {
-                 try {
+            try {
                     const array = getArrayNumeros();
-                    // Passando a ARROW FUNCTION 'calcularMedia' como CALLBACK
+
                     const resultado = executarOperacaoArray(array, calcularMedia);
-                    // Arredonda para 2 casas decimais se for um número decimal
                     const resultadoFormatado = Number.isInteger(resultado) ? resultado : resultado.toFixed(2);
                     exibirResultado(resultadoArray, resultadoFormatado);
                 } catch (e) {
